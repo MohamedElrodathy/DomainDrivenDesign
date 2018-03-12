@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": { "DDD\\": "src/DDD/" }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
+  }
+}

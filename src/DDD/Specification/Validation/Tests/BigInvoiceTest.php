@@ -36,7 +36,7 @@ class BigInvoiceTest extends TestCase
         $invoice1 = new Invoice(1, $customer, 1, new \DateTime());
         $customer->setInvoice($invoice1);
         
-        $invoice2 = new Invoice(2, $customer, 10000, new \DateTime());
+        $invoice2 = new Invoice(2, $customer, 10001, new \DateTime());
         $customer->setInvoice($invoice2);
         
         $customer->setPaymentGracePeriod(7);

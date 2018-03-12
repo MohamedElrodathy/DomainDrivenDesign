@@ -1,12 +1,12 @@
 <?php
-namespace DDD\Specification\Validation;
+namespace DDD\Specification\Selection;
 
 /**
  * Class DelinquentInvoiceSpecification (延滞請求書仕様)
  *
- * @package DDD\Specification\Validation
+ * @package DDD\Specification\Selection
  */
-class DelinquentInvoiceSpecification extends InvoiceSpecification
+class DelinquentInvoiceSpecification implements InvoiceSpecification
 {
     /** @var \DateTime 当日日付 */
     private $currentDate;
@@ -34,5 +34,24 @@ class DelinquentInvoiceSpecification extends InvoiceSpecification
         $firmDeadline = $candidate->getDueDate()->modify($gracePeriod . ' days');
         
         return new \DateTime() > $firmDeadline; 
+    }
+    
+    /**
+     * 条件を満たす要素を取得する
+     *
+     * @param InvoiceRepository $repository 請求書リポジトリ
+     * @return Invoice[] 条件を満たした請求書のセット
+     */
+    public function findSatisfyingElementsBy(InvoiceRepository $repository)
+    {
+        $delinquentInvoices = [];
+        
+        foreach ($repository->findBy() as $invoice) {
+            if ($this->isSatisfiedBy($invoice)) {
+                $delinquentInvoices[] = $invoice;
+            }
+        }
+        
+        return $delinquentInvoices;
     }
 }

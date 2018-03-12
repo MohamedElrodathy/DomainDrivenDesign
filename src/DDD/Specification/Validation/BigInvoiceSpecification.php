@@ -27,6 +27,6 @@ class BigInvoiceSpecification extends InvoiceSpecification
      */
     public function isSatisfiedBy(Invoice $candidate)
     {
-        return $candidate->getAmount() >= $this->thresholdAmount;
+        return $candidate->getAmount() > $this->thresholdAmount;
     }
 }

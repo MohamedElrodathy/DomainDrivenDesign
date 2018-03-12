@@ -1,10 +1,10 @@
 <?php
-namespace DDD\Specification\Validation;
+namespace DDD\Specification\Selection;
 
 /**
  * Class Invoice (請求書)
  *
- * @package DDD\Specification\Validation
+ * @package DDD\Specification\Selection
  */
 class Invoice
 {
